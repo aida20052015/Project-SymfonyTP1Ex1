@@ -27,7 +27,7 @@ final class TP1Ex1Q1Controller extends AbstractController
 
         // Date et heure actuelles
         $dateHeure = new \DateTime();
-        
+        date_default_timezone_set('Europe/Paris');
         return $this->render('tp1_ex1_q1/result.html.twig', [
             'prenom' => $prenom,
             'nom' => $nom,

@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}InformationsConnexions{% endblock %}
+
+{% block body %}
+    <h1>InformationsConnexions</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ informations_connexion.id }}</td>
+            </tr>
+            <tr>
+                <th>Login</th>
+                <td>{{ informations_connexion.Login }}</td>
+            </tr>
+            <tr>
+                <th>MotdePasse</th>
+                <td>{{ informations_connexion.MotdePasse }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_informations_connexions_index') }}">back to list</a>
+
+    <a href="{{ path('app_informations_connexions_edit', {'id': informations_connexion.id}) }}">edit</a>
+
+    {{ include('informations_connexions/_delete_form.html.twig') }}
+{% endblock %}

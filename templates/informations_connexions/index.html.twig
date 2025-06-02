@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}InformationsConnexions index{% endblock %}
+
+{% block body %}
+    <h1>InformationsConnexions index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Login</th>
+                <th>MotdePasse</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for informations_connexion in informations_connexions %}
+            <tr>
+                <td>{{ informations_connexion.id }}</td>
+                <td>{{ informations_connexion.Login }}</td>
+                <td>{{ informations_connexion.MotdePasse }}</td>
+                <td>
+                    <a href="{{ path('app_informations_connexions_show', {'id': informations_connexion.id}) }}">show</a>
+                    <a href="{{ path('app_informations_connexions_edit', {'id': informations_connexion.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_informations_connexions_new') }}">Create new</a>
+{% endblock %}

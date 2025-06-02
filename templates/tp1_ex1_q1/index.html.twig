@@ -1,58 +1,61 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Formulaire de salutation{% endblock %}
+{% block title %}Exercice 2 - JavaScript{% endblock %}
 
 {% block body %}
-    <h1>Formulaire de salutation</h1>
-    
-    <form method="POST" action="{{ path('app_tp1ex1q1_process') }}">
-        <div>
-            <label for="prenom">Prénom :</label>
-            <input type="text" id="prenom" name="prenom" required>
-        </div>
-        <div>
-            <label for="nom">Nom :</label>
-            <input type="text" id="nom" name="nom" required>
-        </div>
-        <button type="submit">Envoyer</button>
-    </form>
-     <script>
+    {# ----- Question 2-1 ----- #}
+    <h3>2-1 : Calcul d'âge</h3>
+    <button onclick="calculAge()">Calculer mon âge</button>
+    <p id="id_age"></p>
 
-// Désactive toutes les interceptations AJAX
+    {# ----- Question 2-2 ----- #}
+    <h3>2-2 : Effet survol</h3>
+    <p class="hover-effect">Survolez-moi pour voir l'effet</p>
 
-document.addEventListener('submit', function(e) {
+    {# ----- Question 2-3 ----- #}
+    <h3>2-3 : Liste des BUT</h3>
+    <ul id="listeBUT">
+        <li>BUT RT</li>
+        <li>BUT GIM</li>
+    </ul>
+    <button onclick="ajouterBUT()">Ajouter</button>
+    <button onclick="supprimerDernier()">Supprimer</button>
 
-    if (e.target.method === 'post') {
+    {# ----- JavaScript intégré ----- #}
+    <script>
+        // Question 2-1
+        function calculAge() {
+            const annee = prompt("Entrez votre année de naissance :");
+            if (!isNaN(annee)) {
+                const age = new Date().getFullYear() - parseInt(annee);
+                document.getElementById('id_age').textContent = `Vous avez ${age} ans`;
+            }
+        }
 
-        e.stopImmediatePropagation();
+        // Question 2-2
+        document.querySelector('.hover-effect').addEventListener('mouseover', function() {
+            this.style.fontSize = '30px';
+            this.style.color = 'red';
+            this.style.fontStyle = 'italic';
+        });
+        document.querySelector('.hover-effect').addEventListener('mouseout', function() {
+            this.style = '';
+        });
 
-        e.stopPropagation();
-
-        return true;
-
-    }
-
-}, true);
-window.addEventListener('load', function() {
-
-    if (window.jQuery) {
-
-        jQuery.ajaxSettings.global = false;
-
-    }
-
-    if (window.fetch) {
-
-        const originalFetch = window.fetch;
-
-        window.fetch = function() {
-
-            return originalFetch.apply(this, arguments);
-
-        };
-
-    }
-
-});
-</script>
+        // Question 2-3
+        function ajouterBUT() {
+            const nom = prompt("Nom du nouveau BUT :");
+            if (nom) {
+                const li = document.createElement('li');
+                li.textContent = nom;
+                document.getElementById('listeBUT').appendChild(li);
+            }
+        }
+        function supprimerDernier() {
+            const liste = document.getElementById('listeBUT');
+            if (liste.children.length > 0) {
+                liste.removeChild(liste.lastElementChild);
+            }
+        }
+    </script>
 {% endblock %}

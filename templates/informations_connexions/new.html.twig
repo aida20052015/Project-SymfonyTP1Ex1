@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New InformationsConnexions{% endblock %}
+
+{% block body %}
+    <h1>Create new InformationsConnexions</h1>
+
+    {{ include('informations_connexions/_form.html.twig') }}
+
+    <a href="{{ path('app_informations_connexions_index') }}">back to list</a>
+{% endblock %}
