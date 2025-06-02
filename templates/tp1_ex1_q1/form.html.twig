@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formulaire de salutation{% endblock %}
+
+{% block body %}
+    <h1>Formulaire de salutation</h1>
+    
+    <form method="POST" action="{{ path('app_tp1ex1q1_process') }}">
+        <div>
+            <label for="prenom">Prénom :</label>
+            <input type="text" id="prenom" name="prenom" required>
+        </div>
+        <div>
+            <label for="nom">Nom :</label>
+            <input type="text" id="nom" name="nom" required>
+        </div>
+        <button type="submit">Envoyer</button>
+    </form>
+    <script>
+
+// Désactive toutes les interceptations AJAX
+
+document.addEventListener('submit', function(e) {
+
+    if (e.target.method === 'post') {
+
+        e.stopImmediatePropagation();
+
+        e.stopPropagation();
+
+        return true;
+
+    }
+
+}, true);
+</script>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Résultat{% endblock %}
+
+{% block body %}
+    <h1>Bonjour {{ prenom }} {{ nom }} !</h1>
+    <p>Nous sommes le {{ dateHeure|date('d/m/Y') }} et il est {{ dateHeure|date('H:i:s') }}</p>
+    
+    <a href="{{ path('app_tp1ex1q1') }}">Retour au formulaire</a>
+{% endblock %}
